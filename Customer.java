@@ -25,10 +25,9 @@ public class Customer {
 			while (customerNbrCompare.get(i) == randomCustomerNbr) {
 				randomCustomerNbr = rand.nextInt(1000000000);
 			}
-			customerNbrCompare.add(randomCustomerNbr);
-			this.customerNbr = randomCustomerNbr;
 		}
-
+		customerNbrCompare.add(randomCustomerNbr);
+		this.customerNbr = randomCustomerNbr;
 	}
 
 	/** Tar reda på kundens namn. */
@@ -48,8 +47,8 @@ public class Customer {
 
 	}
 
-	/** Returnerar en strängbeskrivning av kunden. OBS PUBLIC, KOLLA OM RÄTT*/
+	/** Returnerar en strängbeskrivning av kunden. OBS PUBLIC, KOLLA OM RÄTT */
 	public String toString() {
-		return "Namn: " + this.name + " " + "Kundnummer: " + this.customerNbr + " " + "Personnummer: " + this.idNr;
+		return "Namn: " + this.name + " | " + "Kundnummer: " + this.customerNbr + " | " + "Personnummer: " + this.idNr;
 	}
 }
