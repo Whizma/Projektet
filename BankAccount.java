@@ -6,7 +6,6 @@ public class BankAccount {
 	private double balance;
 	private String holderName;
 	private ArrayList<Long> holderIdList = new ArrayList<Long>();
-	private long holderId;
 	private ArrayList<Integer> customerAccountNbrList = new ArrayList<Integer>();
 	private int accountNbr;
 	Random rand = new Random();
@@ -24,7 +23,6 @@ public class BankAccount {
 		this.cust = cust;
 		this.holderName = holderName;
 		holderIdList.add(holderId);
-		this.holderId = holderId;
 
 		int randomAccountNbr = rand.nextInt(1000000000);
 

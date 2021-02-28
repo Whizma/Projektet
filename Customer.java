@@ -49,6 +49,6 @@ public class Customer {
 
 	/** Returnerar en strängbeskrivning av kunden. OBS PUBLIC, KOLLA OM RÄTT */
 	public String toString() {
-		return "Namn: " + this.name + " | " + "Kundnummer: " + this.customerNbr + " | " + "Personnummer: " + this.idNr;
+		return "Namn: " + this.name + " | " + "Kundnummer: " + this.customerNbr + " | " + "Personnummer: " + (this.idNr);
 	}
 }
