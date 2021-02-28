@@ -4,7 +4,7 @@ import java.util.Random;
 public class BankAccount {
 
 	private double balance;
-	private String holderName;
+	private long holderId;
 	private ArrayList<Long> holderIdList = new ArrayList<Long>();
 	private ArrayList<Integer> customerAccountNbrList = new ArrayList<Integer>();
 	private int accountNbr;
@@ -19,9 +19,9 @@ public class BankAccount {
 	 */
 	BankAccount(String holderName, long holderId) {
 		this.balance = 0;
+		this.holderId = holderId;
 		Customer cust = new Customer(holderName, holderId);
 		this.cust = cust;
-		this.holderName = holderName;
 		holderIdList.add(holderId);
 
 		int randomAccountNbr = rand.nextInt(1000000000);
@@ -42,8 +42,8 @@ public class BankAccount {
 	 */
 	BankAccount(Customer holder) {
 		this.balance = 0;
+		this.holderId = holder.getIdNr();
 		this.cust = holder;
-		this.holderName = holder.getName();
 		int randomAccountNbr = rand.nextInt(1000000000);
 
 		for (Integer i : customerAccountNbrList) {
@@ -51,19 +51,20 @@ public class BankAccount {
 				randomAccountNbr = rand.nextInt(1000000000);
 			}
 		}
+		
 		customerAccountNbrList.add(randomAccountNbr);
 		this.accountNbr = randomAccountNbr;
-		customers.add(holder);
+		customers.add(holder); 
 	}
 
 	/** Tar reda på kontots innehavare. */
-	Customer getHolder() {
+	public Customer getHolder() {
 		return this.cust;
 
 	}
 
 	/** Tar reda på det kontonummer som identifierar detta konto. */
-	int getAccountNumber() {
+	public int getAccountNumber() {
 		return this.accountNbr;
 
 	}
@@ -90,7 +91,7 @@ public class BankAccount {
 
 	/** Returnerar en strängrepresentation av bankkontot. */
 	public String toString() {
-		return "Kontoinnehavare: " + holderName + " | " + "Kontonummer: " + accountNbr + " | Saldo: " + balance;
+		return "Kontoinnehavare: " + cust.getName() + " | " + "Kontonummer: " + accountNbr + " | Saldo: " + balance + " | Kundnummer: " + cust.getCustomerNr() + " | id: " + holderId ;
 	}
 	
 	public static ArrayList<Customer> getCustomers(){

@@ -11,6 +11,9 @@ public class BankApplication {
 		Customer cust = new Customer("Vigge", 25);
 		BankAccount ba = new BankAccount(cust);
 		BankAccount ba2 = new BankAccount("mads", 54525250);
+		BankAccount b3 = new BankAccount(ba2.getHolder());
+		System.out.println(ba2.toString());
+		System.out.println(cust.toString() + cust.getCustomerNr() + cust.getIdNr() + cust.getName());
 		while (true)
 		userInput();
 
@@ -69,9 +72,17 @@ public class BankApplication {
 			break;
 		case 3:
 			System.out.println("3. Sätt in");
-			System.out.println("Skriv in hur mycket du vill sätta in");
+			System.out.println("Skriv in kontonumret till kontot du vill sätta in summan på");
+			int accountDeposit = scan.nextInt();
+			BankAccount accountToDeposit;
+		//	for (BankAccount b : BankAccount.getCustomers())
+		//		if (accountDeposit == b) {
+		//			System.out.println("Kontot du valt att sätta in på är" + c.toString());
+			//		accountToDeposit = c;
+				//}
+			System.out.println("Skriv in hur mycket du vill sätta in på kontot");
 			double deposit = scan.nextDouble();
-			
+		//	accountToDeposit.deposit(deposit);
 			break;
 		}
 	}
