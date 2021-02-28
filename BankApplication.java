@@ -3,25 +3,19 @@
 import java.util.Scanner;
 
 public class BankApplication {
-
 	private static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		printMenuText();
-		Customer cust = new Customer("Vigge", 25);
-		BankAccount ba = new BankAccount(cust);
-		BankAccount ba2 = new BankAccount("mads", 54525250);
-		BankAccount b3 = new BankAccount(ba2.getHolder());
-		System.out.println(ba2.toString());
-		System.out.println(cust.toString() + cust.getCustomerNr() + cust.getIdNr() + cust.getName());
-		while (true)
-		userInput();
-
-	}
-
-	private static void runApplication() {
-		printMenuText();
-		userInput();
+		Bank bank = new Bank();
+		bank.addAccount("adam", 2424);
+		//		Customer cust = new Customer("Vigge", 25);
+		//		BankAccount ba = new BankAccount(cust);
+		//		BankAccount ba2 = new BankAccount("mads", 54525250);
+		//		BankAccount b3 = new BankAccount(ba2.getHolder());
+		while (true) {
+			userInput();
+		}
 
 	}
 
@@ -39,6 +33,7 @@ public class BankApplication {
 
 	private static void userInput() {
 		int userInput = scan.nextInt();
+		Bank bank = new Bank();
 		switch (userInput) {
 		case 1:
 			System.out.println("Val: 1. Hitta konto utifrån innehavare");
@@ -47,14 +42,14 @@ public class BankApplication {
 			int counter1 = 0;
 			for (Customer c : BankAccount.getCustomers())
 				if (id == c.getIdNr()) {
-					System.out.println(c.toString()); 
+					System.out.println(c.toString());
 					counter1++;
 					break;
 				}
-			
-					if (counter1 < 1) {
-						System.out.println("Det finns inget konto med den innehavaren");
-				}
+
+			if (counter1 < 1) {
+				System.out.println("Det finns inget konto med den innehavaren");
+			}
 			break;
 		case 2:
 			System.out.println("2. Sök kontoinnehavare utifrån (del av) namn");
@@ -66,24 +61,52 @@ public class BankApplication {
 					System.out.println(c.toString());
 					counter2++;
 				}
-				if (counter2 == 0) {
-					System.out.println("Det finns ingen kontoinnehavare med det namnet");
-				}
+			if (counter2 == 0) {
+				System.out.println("Det finns ingen kontoinnehavare med det namnet");
+			}
 			break;
 		case 3:
 			System.out.println("3. Sätt in");
 			System.out.println("Skriv in kontonumret till kontot du vill sätta in summan på");
-			int accountDeposit = scan.nextInt();
-			BankAccount accountToDeposit;
-		//	for (BankAccount b : BankAccount.getCustomers())
-		//		if (accountDeposit == b) {
-		//			System.out.println("Kontot du valt att sätta in på är" + c.toString());
-			//		accountToDeposit = c;
-				//}
-			System.out.println("Skriv in hur mycket du vill sätta in på kontot");
-			double deposit = scan.nextDouble();
-		//	accountToDeposit.deposit(deposit);
+
 			break;
+
+		case 4:
+			System.out.println("4. Ta ut");
+			System.out.println("Skriv in kontonumret till kontot du vill sätta in summan på");
+
+			break;
+
+		case 5:
+			System.out.println("5. Överföring");
+			System.out.println("Skriv in kontonumret till kontot du vill sätta in summan på");
+
+			break;
+
+		case 6:
+			System.out.println("6. Skapa konto");
+			System.out.println("Skriv in ditt namn");
+			String accountName = scan.next();
+			System.out.println("Skriv in personnummer");
+			long idNbr = scan.nextLong();
+			bank.addAccount(accountName, idNbr);
+
+			break;
+
+		case 7:
+			System.out.println("7. Ta bort konto");
+			System.out.println("Skriv in kontonumret till kontot du vill sätta in summan på");
+
+			break;
+
+		case 8:
+			System.out.println("8. Skriv ut konton");
+			System.out.println("Lista på konton: ");
+			for (BankAccount b : bank.getAllAccounts()) {
+				System.out.println(b.toString());
+			}
+			break;
+
 		}
 	}
 }
