@@ -11,6 +11,7 @@ public class BankAccount {
 	private int accountNbr;
 	Random rand = new Random();
 	Customer cust;
+	private static ArrayList<Customer> customers = new ArrayList<Customer>();
 
 	/**
 	 * Skapar ett nytt bankkonto åt en innehavare med namn ’holderName’ och id
@@ -34,6 +35,7 @@ public class BankAccount {
 		}
 		customerAccountNbrList.add(randomAccountNbr);
 		this.accountNbr = randomAccountNbr;
+		customers.add(cust);
 	}
 
 	/**
@@ -53,6 +55,7 @@ public class BankAccount {
 		}
 		customerAccountNbrList.add(randomAccountNbr);
 		this.accountNbr = randomAccountNbr;
+		customers.add(holder);
 	}
 
 	/** Tar reda på kontots innehavare. */
@@ -90,5 +93,9 @@ public class BankAccount {
 	/** Returnerar en strängrepresentation av bankkontot. */
 	public String toString() {
 		return "Kontoinnehavare: " + holderName + " | " + "Kontonummer: " + accountNbr + " | Saldo: " + balance;
+	}
+	
+	public static ArrayList<Customer> getCustomers(){
+		return customers;
 	}
 }
