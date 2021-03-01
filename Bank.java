@@ -2,10 +2,12 @@ import java.util.ArrayList;
 
 public class Bank {
 	ArrayList<BankAccount> bankAccounts;
-
+    BankAccount ab = new BankAccount("temp",123);
 	/** Skapar en ny bank utan konton. */
 	public Bank() {
 		bankAccounts = new ArrayList<BankAccount>();
+		BankAccount ba = new BankAccount("sss",2323);
+		bankAccounts.add(ba);
 
 	}
 
@@ -16,18 +18,19 @@ public class Bank {
 	 */
 	int addAccount(String holderName, long idNr) {
 		int accountNumber = 0;
-			for (Customer c : BankAccount.getCustomers()) {
-				if (idNr != c.getIdNr()) {
+			for (BankAccount b : bankAccounts) {
+				if (idNr != b.getHolder().getIdNr()) {
 					BankAccount ba1 = new BankAccount(holderName, idNr);
-					bankAccounts.add(ba1);
+					ab = ba1;
 					accountNumber = ba1.getAccountNumber();
 
 				} else {
-					BankAccount ba2 = new BankAccount(c);
+					BankAccount ba2 = new BankAccount(holderName, idNr);
 					accountNumber = ba2.getAccountNumber();
-					bankAccounts.add(ba2);
+					ab = ba2;
 				}
 			}
+		bankAccounts.add(ab);	
 		return accountNumber;
 	}
 
