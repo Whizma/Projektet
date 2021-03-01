@@ -74,7 +74,7 @@ public class BankApplication {
 					String accountName = scan.next();
 					System.out.println("Skriv in personnummer");
 					long idNbr = scan.nextLong();
-					bankish.addAccount(accountName, idNbr);
+					bankish.addAccounts(accountName,idNbr);
 				} else if (userInput == 7) {
 					System.out.println("7. Ta bort konto");
 					System.out.println("Skriv in kontonumret till kontot du vill sätta in summan på");
