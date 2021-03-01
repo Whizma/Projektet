@@ -33,7 +33,6 @@ public class BankApplication {
 
 	private static void userInput() {
 		int userInput = scan.nextInt();
-		Bank bank = new Bank();
 		switch (userInput) {
 		case 1:
 			System.out.println("Val: 1. Hitta konto utifrån innehavare");

@@ -5,7 +5,7 @@ public class Bank {
 
 	/** Skapar en ny bank utan konton. */
 	public Bank() {
-		this.bankAccounts = new ArrayList<BankAccount>();
+		bankAccounts = new ArrayList<BankAccount>();
 
 	}
 
@@ -16,7 +16,6 @@ public class Bank {
 	 */
 	int addAccount(String holderName, long idNr) {
 		int accountNumber = 0;
-		int counter5 = 0;
 			for (Customer c : BankAccount.getCustomers()) {
 				if (idNr != c.getIdNr()) {
 					BankAccount ba1 = new BankAccount(holderName, idNr);
