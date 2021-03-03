@@ -8,8 +8,8 @@ public class BankAccount {
 	private ArrayList<Long> holderIdList = new ArrayList<Long>();
 	private ArrayList<Integer> customerAccountNbrList = new ArrayList<Integer>();
 	private int accountNbr;
-	Random rand = new Random();
-	Customer cust;
+	private Random rand = new Random();
+	private Customer cust;
 	private static ArrayList<Customer> customers = new ArrayList<Customer>();
 
 	/**
@@ -17,15 +17,14 @@ public class BankAccount {
 	 * ’holderId’. Kontot tilldelas ett unikt kontonummer och innehåller
 	 * inledningsvis 0 kr.
 	 */
-	BankAccount(String holderName, long holderId) {
+	public BankAccount(String holderName, long holderId) {
 		this.balance = 0;
 		this.holderId = holderId;
+		holderIdList.add(holderId);
 		Customer cust = new Customer(holderName, holderId);
 		this.cust = cust;
-		holderIdList.add(holderId);
 
 		int randomAccountNbr = rand.nextInt(1000000000);
-
 		for (Integer i : customerAccountNbrList) {
 			while (customerAccountNbrList.get(i) == randomAccountNbr) {
 				randomAccountNbr = rand.nextInt(1000000000);
@@ -40,7 +39,7 @@ public class BankAccount {
 	 * Skapar ett nytt bankkonto med innehavare ’holder’. Kontot tilldelas ett unikt
 	 * kontonummer och innehåller inledningsvis 0 kr.
 	 */
-	BankAccount(Customer holder) {
+	public BankAccount(Customer holder) {
 		this.balance = 0;
 		this.holderId = holder.getIdNr();
 		this.cust = holder;
@@ -52,47 +51,43 @@ public class BankAccount {
 			}
 		}
 		this.accountNbr = randomAccountNbr;
-		customers.add(holder); 
+		customers.add(holder);
 	}
 
 	/** Tar reda på kontots innehavare. */
 	public Customer getHolder() {
 		return this.cust;
-
 	}
 
 	/** Tar reda på det kontonummer som identifierar detta konto. */
 	public int getAccountNumber() {
 		return this.accountNbr;
-
 	}
 
 	/** Tar reda på hur mycket pengar som finns på kontot. */
-	double getAmount() {
+	public double getAmount() {
 		return this.balance;
-
 	}
 
 	/** Sätter in beloppet ’amount’ på kontot. */
-	void deposit(double amount) {
+	public void deposit(double amount) {
 		balance = balance + amount;
-
 	}
 
 	/**
 	 * Tar ut beloppet ’amount’ från kontot. Om kontot saknar täckning blir saldot
 	 * negativt.
 	 */
-	void withdraw(double amount) {
+	public void withdraw(double amount) {
 		balance = balance - amount;
 	}
 
 	/** Returnerar en strängrepresentation av bankkontot. */
 	public String toString() {
-		return "Kontoinnehavare: " + cust.getName() + " | " + "Kontonummer: " + accountNbr + " | Saldo: " + balance + " | Kundnummer: " + cust.getCustomerNr() + " | id: " + holderId ;
+		return "Kontoinnehavare: " + cust.getName() + " | " + "Kontonummer: " + accountNbr + " | Saldo: " + balance + " | Kundnummer: " + cust.getCustomerNr() + " | id: " + holderId;
 	}
-	
-	public static ArrayList<Customer> getCustomers(){
+
+	public static ArrayList<Customer> getCustomers() {
 		return customers;
 	}
 }

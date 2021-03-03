@@ -3,14 +3,11 @@
 import java.util.Scanner;
 
 public class BankApplication {
-	private static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		scan.useDelimiter(System.lineSeparator());
 		Bank bankish = new Bank();
-		bankish.addAccount("Anna B", 1234);
-		bankish.addAccount("Anna B", 5678);
 
 		while (true) {
 			System.out.println("");
@@ -60,8 +57,7 @@ public class BankApplication {
 								System.out.println("Skriv in summan du vill sätta in");
 								double amount = scan.nextDouble();
 								while (b.getAmount() + amount < 0) {
-									System.out.println(
-											"Insättningen misslyckades, du kan inte sätta in en negativ summa!");
+									System.out.println("Insättningen misslyckades, du kan inte sätta in en negativ summa!");
 									System.out.println("Skriv in summan du vill sätta in");
 									amount = scan.nextDouble();
 								}
@@ -88,15 +84,12 @@ public class BankApplication {
 						if (accountNumber == b.getAccountNumber() && count2 == 0) {
 							System.out.println("Skriv in summan du vill ta ut");
 							double amount = scan.nextDouble();
-							while (b.getAmount() - amount < 0) {
-								System.out.println(
-										"Uttaget misslyckades, du har endast " + b.getAmount() + " på kontot!");
-								System.out.println("Skriv in summan du vill ta ut");
-								amount = scan.nextDouble();
+							if (b.getAmount() - amount < 0) {
+								System.out.println("Uttaget misslyckades, du har endast " + b.getAmount() + " på kontot!");
+							} else {
+								b.withdraw(amount);
+								System.out.println("Du tog nyss ut " + amount + " från kontot " + accountNumber);
 							}
-
-							b.withdraw(amount);
-							System.out.println("Du tog nyss ut " + amount + " från kontot " + accountNumber);
 						}
 					}
 				}
@@ -104,7 +97,7 @@ public class BankApplication {
 				int counter = 0;
 				double amount = 0;
 				BankAccount temp = null;
-
+				
 				System.out.println("Skriv in kontonumret till kontot du vill sätta in summan på");
 				int toAccountNumber = scan.nextInt();
 				for (BankAccount a : bankish.getAllAccounts()) {
@@ -135,17 +128,14 @@ public class BankApplication {
 							System.out.println("Skriv in summan du vill ta ut");
 							amount = scan.nextDouble();
 							while (b1.getAmount() - amount < 0) {
-								System.out.println(
-										"Uttaget misslyckades, du har endast " + b1.getAmount() + " på kontot!");
+								System.out.println("Uttaget misslyckades, du har endast " + b1.getAmount() + " på kontot!");
 								System.out.println("Skriv in summan du vill ta ut");
 								amount = scan.nextDouble();
 							}
-
 							b1.withdraw(amount);
 							temp.deposit(amount);
 							count2++;
-							System.out.println("Du för över " + amount + " från " + fromAccountNumber + " till kontot "
-									+ toAccountNumber);
+							System.out.println("Du för över " + amount + " från " + fromAccountNumber + " till kontot " + toAccountNumber);
 						}
 
 					}
@@ -158,8 +148,7 @@ public class BankApplication {
 				System.out.println("Skriv in personnummer");
 				long idNbr = scan.nextLong();
 				bankish.addAccount(accountName, idNbr);
-				System.out.println(
-						"Ditt nya konto: " + bankish.getUnsortedList().get(bankish.getUnsortedList().size() - 1));
+				System.out.println("Ditt nya konto: " + bankish.getUnsortedList().get(bankish.getUnsortedList().size() - 1));
 
 			} else if (userInput == 7) {
 				System.out.println("7. Ta bort konto");
