@@ -51,8 +51,6 @@ public class BankAccount {
 				randomAccountNbr = rand.nextInt(1000000000);
 			}
 		}
-		
-		customerAccountNbrList.add(randomAccountNbr);
 		this.accountNbr = randomAccountNbr;
 		customers.add(holder); 
 	}
